@@ -32,11 +32,12 @@ var spotify = require('spotify-node-applescript');
 //********************** MQTT MESSAGES WITH ACTIONS **************************//
 // Setup the socket connection and listen for messages
 client.on('connect', function () {
-  client.subscribe('say'); // messages from the wizard interface to speak out
+  client.subscribe('DJ0-say'); // messages from the wizard interface to speak out
+  client.subscribe('DJ0-vol');
   console.log("Waiting for messages...");
 
   // messages for testing
-  client.publish('say', 'Hello, my name is DJ bot!');
+  client.publish('DJ0-say', 'Hello, my name is DJ bot!');
 });
 
 // Print out the messages and say messages that are topic: "say"
@@ -46,12 +47,12 @@ client.on('message', function (topic, message) {
   console.log(topic, message.toString());
 
   // Say the message using our function that turns Spotify down
-  if (topic === 'say') {
+  if (topic === 'DJ0-say') {
     say_message(message.toString())
   }
 
   // Control the volume
-  if (topic === 'vol') {
+  if (topic === 'DJ0-vol') {
     spotify.setVolume(parseInt(message.toString()));
   }
 
