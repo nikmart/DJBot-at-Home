@@ -1,0 +1,14 @@
+{
+  "name": "DJ Bot",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Server to run the bot code. Control volume and speech",
+  "main": "bot.js",
+  "author": "Nik Martelaro <nmartelaro@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mqtt": "^2.13.0",
+    "say": "^0.13.1",
+    "spotify-node-applescript": "^1.1.0"
+  }
+}
