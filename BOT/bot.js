@@ -70,7 +70,7 @@ function say_message(msg) {
     // Lower the Spotify volume by 50%
     spotify.setVolume(level/2, function() {
       // Say the message
-      say.speak(msg, 'Daniel', 1.0, (err) => {
+      say.speak(msg, 'Samantha', 1.0, (err) => {
         if (err) {
           return console.error(err);
         }

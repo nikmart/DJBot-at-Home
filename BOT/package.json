@@ -1,11 +1,21 @@
 {
-  "name": "DJ Bot",
+  "name": "bot",
   "version": "0.0.1",
-  "private": true,
-  "description": "Server to run the bot code. Control volume and speech",
+  "description": "DJ Bot at home bot",
   "main": "bot.js",
-  "author": "Nik Martelaro <nmartelaro@gmail.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikmart/DJBot-at-Home.git"
+  },
+  "author": "Nik Martelaro",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nikmart/DJBot-at-Home/issues"
+  },
+  "homepage": "https://github.com/nikmart/DJBot-at-Home#readme",
   "dependencies": {
     "mqtt": "^2.13.0",
     "say": "^0.13.1",
