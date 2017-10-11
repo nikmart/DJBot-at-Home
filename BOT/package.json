@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nikmart/DJBot-at-Home#readme",
   "dependencies": {
     "mqtt": "^2.13.0",
+    "osx-volume-controls": "^1.0.1",
     "say": "^0.13.1",
     "spotify-node-applescript": "^1.1.0"
   }

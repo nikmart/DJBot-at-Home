@@ -84,10 +84,17 @@ io.on('connect', function(socket) {
     });
 
     // if you get a volume change message send it to the bot
-    socket.on('vol', function(msg) {
+    socket.on('spotify-vol', function(msg) {
       console.log(msg);
       // send if to the mqtt broker
       client.publish('DJ0-vol', msg);
+    });
+
+    // if you get a system volume change message send it to the bot
+    socket.on('sys-vol', function(msg) {
+      console.log(msg);
+      // send if to the mqtt broker
+      client.publish('DJ0-sys-vol', msg);
     });
 
     // if you get the 'disconnect' message, say the user disconnected

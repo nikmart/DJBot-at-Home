@@ -21,8 +21,13 @@
         <button onclick="play(4)">Sound 4</button>
     </div> -->
 
-    <input type="range" min="0" max="100" value="100" onchange="showValue(this.value)" />
-    <span id="range">100</span>
+    <p>Spotify Volume</p>
+    <input type="range" min="0" max="100" value="100" onchange="changeSpotifyVol(this.value)" />
+    <span id="spotify-vol">100</span>
+
+    <p>System Volume</p>
+    <input type="range" min="0" max="100" value="100" onchange="changeSysVol(this.value)" />
+    <span id="sys-vol">100</span>
 
     <div id="wrap">
         <div id="left_col">

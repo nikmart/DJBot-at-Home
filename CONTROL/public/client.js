@@ -74,8 +74,14 @@ function readJapanese() {
     socket.emit('lang', lang);
 }
 
-function showValue(newValue)
+function changeSpotifyVol(newValue)
 {
-	document.getElementById("range").innerHTML=newValue;
-  socket.emit('vol', newValue)
+	document.getElementById("spotify-vol").innerHTML=newValue;
+  socket.emit('spotify-vol', newValue)
+}
+
+function changeSysVol(newValue)
+{
+	document.getElementById("sys-vol").innerHTML=newValue;
+  socket.emit('sys-vol', newValue)
 }
