@@ -11,6 +11,7 @@ function play(id) {
 function sendOnEnter() {
     // send on enter key
     if (event.keyCode == 13) {
+        halfSpotify();
         sendMsg();
     }
 }
@@ -40,7 +41,7 @@ function addQuestion(msg) {
 
     var btn = document.createElement("BUTTON");
     btn.className = "play";
-    var btnReplay = document.createTextNode("&#9658;"); // Create a text node
+    var btnReplay = document.createTextNode("\u25B6"); // Create a text node
     btn.onclick = function() {
         replayMsg(msg)
     };

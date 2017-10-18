@@ -71,24 +71,25 @@ client.on('message', function (topic, message) {
 
 // FUNCTIONS //
 function say_message(msg) {
+  say.speak(msg);
   // Turn the volume down, say something, then turn it back up to the original
   // volume. The functions are stacked since they are based on callbacks and
   // usualy run asynchronously
-  spotify.getState(function(err, state) {
-    level = state.volume;
-    console.log(level);
-    // Lower the Spotify volume by 50%
-    spotify.setVolume(level/2, function() {
-      // Say the message
-      say.speak(msg, 'Samantha', 1.0, (err) => {
-        if (err) {
-          return console.error(err);
-        }
-        // Set the volume back to the original level
-        spotify.setVolume(level);
-      });
-    });
-  });
+  // spotify.getState(function(err, state) {
+  //   level = state.volume;
+  //   console.log(level);
+  //   // Lower the Spotify volume by 50%
+  //   spotify.setVolume(level/2, function() {
+  //     // Say the message
+  //     say.speak(msg, 'Samantha', 1.0, (err) => {
+  //       if (err) {
+  //         return console.error(err);
+  //       }
+  //       // Set the volume back to the original level
+  //       spotify.setVolume(level);
+  //     });
+  //   });
+  // });
 }
 
 // TESTS
