@@ -1,11 +1,30 @@
+/*My stuff here*/
+button, input[type=button] {
+  border: 0;
+  border-radius: 5px;
+  background: #0a0;
+  padding: 7px 12px;
+  color: white;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+button:hover {
+  background: #090;
+}
+
+.reset {
+  background: red;
+}
+
 body {
   font-family: Helvetica, arial, sans-serif;
   font-size: 12px;
   line-height: 1.5;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: white;
-  padding: 40px; }
+  padding: 20px; }
 
 body > *:first-child {
   margin-top: 0 !important; }

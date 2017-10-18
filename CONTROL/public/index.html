@@ -5,165 +5,69 @@
     <meta charset="UTF-8">
     <title>DJ Bot Control Station</title>
     <script src="/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" type="text/css" href="GitHub2.css">
+    <link rel="stylesheet" type="text/css" href="woz.css">
 </head>
 
-<body>
-    <h1>DJ Bot Control Station</h1>
-    <!-- <h3 id="status" style="color:#FF0000";>Offline</h3> -->
+<div class="main-container">
+    <div class="left-container">
+      <h4>DJ Bot Controls</h4>
 
-    <!-- <div id="sound_buttons">
-        <p> Click the buttons to play a sound!</p>
-        <button onclick="play(0)">Sound 0</button>
-        <button onclick="play(1)">Sound 1</button>
-        <button onclick="play(2)">Sound 2</button>
-        <button onclick="play(3)">Sound 3</button>
-        <button onclick="play(4)">Sound 4</button>
-    </div> -->
+      <div class="vol-containers">
 
-    <p>Spotify Volume</p>
-    <input type="range" min="0" max="100" value="100" onchange="changeSpotifyVol(this.value)" />
-    <span id="spotify-vol">100</span>
-
-    <p>System Volume</p>
-    <input type="range" min="0" max="100" value="100" onchange="changeSysVol(this.value)" />
-    <span id="sys-vol">100</span>
-
-    <div id="wrap">
-        <div id="left_col">
-            <h3>Type your message to send to the car here:</h3>
-            <input type="text" id="message" name="message" style="width: 300px;" onKeyDown="sendOnEnter()">
-            <p></p>
-
-            <button onClick="sendMsg()">Send</button>
-            <button onClick="resetMsg()">Reset</button>
-
-            <h5>Previous Questions</h5>
-            <div id="questions">
-
+        <div class="left-volume">
+            <label>Spotify</label>
+            <input type="range" min="0" max="100" value="100" oninput="changeSpotifyVol(this.value)" class="slider" id="spotifyRange"/>
+            <label id="spotify-vol">100</label>
+            <div class="volume-controls">
+              <!-- <button class="mute" onclick="muteSpotify()" id="spotifyMute">MUTE</button> -->
+              <button class="half" onclick="halfSpotify()" id="spotifyHalf">HALF</button>
             </div>
         </div>
 
-        <div id="right_col">
-            <h5>Introduction</h5>
+        <!-- <div class="right-volume">
+          <label>System</label>
+          <input type="range" min="0" max="100" value="100" oninput="changeSysVol(this.value)" class="slider"/>
+          <label id="sys-vol">100</label>
+          <div class="volume-controls">
+            <button class="mute">MUTE</button>
+            <button class="half">HALF</button>
+          </div>
+        </div> -->
 
-            <label id="q8">Hi! What would you like to hear?</label>
-            <input type="button" onClick="playMsg('q8')" value="Play">
-            <br>
+      </div>
 
-            <label id="q9">Hi! Here’s some music, let me know whether you like it or how you’d like to change it.</label>
-            <input type="button" onClick="playMsg('q9')" value="Play">
-            <br>
+      <br>
 
-            <h5>Warm Up</h5>
-            <label id="q1">What do you like to listen to while driving?</label>
-            <input type="button" onClick="playMsg('q1')" value="Play">
-            <br>
+      <div>
+        <label for="message">Message: </label>
+        <input type="text" id="message" name="message" onKeyDown="sendOnEnter()">
+      </div>
 
-            <label id="q2">What other type of music do you like?</label>
-            <input type="button" onClick="playMsg('q2')" value="Play">
-            <br>
+      <div class="previous-messages" id="questions">
+      </div>
 
-            <label id="q3">What would you like to listen to?</label>
-            <input type="button" onClick="playMsg('q3')" value="Play">
-            <br>
-
-            <h5>When songs playing for a while</h5>
-
-            <label id="q4">What did you listen to when you were younger?</label>
-            <input type="button" onClick="playMsg('q4')" value="Play">
-            <br>
-
-            <label id="q5">Do you still like any of those bands?</label>
-            <input type="button" onClick="playMsg('q5')" value="Play">
-            <br>
-
-            <h5>Song 1</h5>
-            <label id="q10">I’m going to play you something, hope you like it! If you don’t, just give me some directions, like play something a little louder, or a bit jazzier.</label>
-            <input type="button" onClick="playMsg('q10')" value="Play">
-            <br>
-
-            <h5>Song 2</h5>
-            <label id="q12">How about this?</label>
-            <input type="button" onClick="playMsg('q12')" value="Play">
-            <br>
-
-            <label id="q13">You can keep giving me directions if you want.</label>
-            <input type="button" onClick="playMsg('q13')" value="Play">
-            <br>
-
-            <h5>Song 3</h5>
-            <label id="q14">And now for a classic driving song! Go ahead and steer me until you find something you like.</label>
-            <input type="button" onClick="playMsg('q14')" value="Play">
-            <br>
-
-            <h5>Per item request</h5>
-            <label id="q15">I can also play you something you haven’t heard of yet. Any type of music that you’d like?</label>
-            <input type="button" onClick="playMsg('q15')" value="Play">
-            <br>
-
-            <label id="q16">Do you know this artist?</label>
-            <input type="button" onClick="playMsg('q16')" value="Play">
-            <br>
-
-            <label id="q17">Did you think this playlist was good?</label>
-            <input type="button" onClick="playMsg('q17')" value="Play">
-            <br>
-
-            <label id="q18">Describe something that you’d like to hear right now. Like ‘play me something from England with guitars, or play me some nineties hip-hop’. Try it!</label>
-            <input type="button" onClick="playMsg('q18')" value="Play">
-            <br>
-
-            <label id="q18">Describe something that you’d like to hear right now. Like ‘play me something from England with guitars, or play me some nineties hip-hop’. Try it!</label>
-            <input type="button" onClick="playMsg('q18')" value="Play">
-            <br>
-
-            <h5>Common Questions and Phrases</h5>
-            <label id="q6">Can you tell me more?</label>
-            <input type="button" onClick="playMsg('q6')" value="Play">
-            <br>
-
-            <label id="q19">What would you like to listen to next?</label>
-            <input type="button" onClick="playMsg('q19')" value="Play">
-            <br>
-
-            <label id="q20">Anything else that you’d like to hear?</label>
-            <input type="button" onClick="playMsg('q20')" value="Play">
-            <br>
-
-            <label id="q21">OK</label>
-            <input type="button" onClick="playMsg('q21')" value="Play">
-            <br>
-
-            <label id="q22">Yes</label>
-            <input type="button" onClick="playMsg('q22')" value="Play">
-            <br>
-
-            <h5>Exit</h5>
-            <label id="q23">Can you tell me more?</label>
-            <input type="button" onClick="playMsg('q23')" value="Play">
-            <br>
-
-            <p>
-                <h5>Language</h5>
-                <label>
-                    <input type="radio" name="RadioGroup1" value="english" id="RadioGroup1_0" onChange="readEnglish()"> English
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="RadioGroup1" value="french" id="RadioGroup1_1" onChange="readFrench()"> French
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="RadioGroup1" value="japanese" id="RadioGroup1_2" onChange="readJapanese()"> Japanese
-                </label>
-                <br>
-            </p>
-
-        </div>
     </div>
-</body>
 
+    <div class="right-container">
+      <h4>Script</h4>
+
+      <div class="script-container">
+        <h5>Introduction</h5>
+      </div>
+
+      <div class="script-container">
+        <button onClick="playMsg('q1')" class="play">&#9654;</button>
+        <p id="q1">Hi! What would you like to hear?</p>
+      </div>
+
+      <div class="script-container">
+        <button onClick="playMsg('q1')" class="play">&#9654;</button>
+        <p id="q1">Hi! What would you like to hear?</p>
+      </div>
+
+    </div>
+
+</div>
 
 <script src="client.js"></script>
 

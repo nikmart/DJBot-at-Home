@@ -1,5 +1,7 @@
 // JavaScript Document
 var socket = io();
+var spotifyVol = "100";
+var restore = false;
 
 // send out sound message over socket
 function play(id) {
@@ -37,15 +39,16 @@ function addQuestion(msg) {
     para.appendChild(node);
 
     var btn = document.createElement("BUTTON");
-    var btnReplay = document.createTextNode("Replay"); // Create a text node
+    btn.className = "play";
+    var btnReplay = document.createTextNode("\u25B6"); // Create a text node
     btn.onclick = function() {
         replayMsg(msg)
     };
     btn.appendChild(btnReplay);
 
-    para.appendChild(btn);
+    para.prepend(btn);
     var element = document.getElementById("questions");
-    element.appendChild(para);
+    element.prepend(para);
 }
 
 function replayMsg(msg) {
@@ -84,4 +87,23 @@ function changeSysVol(newValue)
 {
 	document.getElementById("sys-vol").innerHTML=newValue;
   socket.emit('sys-vol', newValue)
+}
+
+function halfSpotify() {
+  current_vol = parseInt(document.getElementById("spotify-vol").textContent);
+  console.log(current_vol);
+  if (!restore) {
+    spotifyVol = current_vol; //update the last volume
+    range = document.getElementById("spotifyRange")
+    changeSpotifyVol((current_vol/2).toString());
+    range.value = (current_vol/2).toString();
+    document.getElementById("spotifyHalf").textContent = "RESTORE";
+    restore = true;
+  } else {
+    range = document.getElementById("spotifyRange")
+    changeSpotifyVol(spotifyVol.toString());
+    range.value = spotifyVol.toString();
+    document.getElementById("spotifyHalf").textContent = "HALF";
+    restore = false;
+  }
 }
