@@ -15,13 +15,15 @@
       <div class="vol-containers">
 
         <div class="left-volume">
-            <label>Spotify</label>
-            <input type="range" min="0" max="100" value="100" oninput="changeSpotifyVol(this.value)" class="slider" id="spotifyRange"/>
-            <label id="spotify-vol">100</label>
-            <div class="volume-controls">
-              <!-- <button class="mute" onclick="muteSpotify()" id="spotifyMute">MUTE</button> -->
-              <button class="half" onclick="halfSpotify()" id="spotifyHalf">HALF</button>
-            </div>
+            <label>Spotify Volume:</label>
+            <label id="spotify-vol" class="vol-indicator">100</label>
+            <span id="slidercontainer">
+              <input type="range" min="0" max="100" value="100" oninput="changeSpotifyVol(this.value)" class="slider" id="spotifyRange"/>
+              <div class="volume-controls">
+                <!-- <button class="mute" onclick="muteSpotify()" id="spotifyMute">MUTE</button> -->
+                <button class="half" onclick="halfSpotify()" id="spotifyHalf">HALF VOL</button>
+              </div>
+            </span>
         </div>
 
         <!-- <div class="right-volume">
@@ -38,8 +40,8 @@
 
       <br>
 
-      <div>
-        <label for="message">Message: </label>
+      <div class="message-input">
+        <label for="message" >Message: </label>
         <input type="text" id="message" name="message" onKeyDown="sendOnEnter()">
       </div>
 

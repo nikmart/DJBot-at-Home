@@ -47,6 +47,7 @@ function addQuestion(msg) {
     btn.appendChild(btnReplay);
 
     para.prepend(btn);
+    para.className = "previous-question";
     var element = document.getElementById("questions");
     element.prepend(para);
 }
