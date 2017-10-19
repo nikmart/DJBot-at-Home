@@ -31,6 +31,8 @@ var client  = mqtt.connect('mqtt://hri.stanford.edu',
                            {port: 8134,
                             protocolId: 'MQIsdp',
                             protocolVersion: 3 });
+//timesatamping
+require('log-timestamp');
 //****************************************************************************//
 
 //****************************** WEB INTERFACE *******************************//
