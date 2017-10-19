@@ -56,6 +56,7 @@ function addQuestion(msg) {
 
 function replayMsg(msg) {
     console.log(msg);
+    halfSpotify(); //lower the volume first
     socket.emit('msg', msg); //send the message to ther server
 }
 
