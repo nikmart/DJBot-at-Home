@@ -11,12 +11,13 @@ function play(id) {
 function sendOnEnter() {
     // send on enter key
     if (event.keyCode == 13) {
-        halfSpotify();
         sendMsg();
     }
 }
 
 function sendMsg() {
+    // lower the volume first
+    halfSpotify();
     // get and send the messge to the remote interface
     var msg = document.getElementById("message").value;
     console.log(msg);
@@ -59,6 +60,7 @@ function replayMsg(msg) {
 }
 
 function playMsg(msgID) {
+    halfSpotify(); //lower the volume first
     var msg = document.getElementById(msgID).innerHTML;
     console.log(msg);
     socket.emit('msg', msg); //send the message to ther server
