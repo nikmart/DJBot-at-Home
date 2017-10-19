@@ -30,6 +30,9 @@ var spotify = require('spotify-node-applescript');
 
 //System Volume control
 var volume = require('osx-volume-controls')
+
+//timesatamping
+require('log-timestamp');
 //****************************************************************************//
 
 //********************** MQTT MESSAGES WITH ACTIONS **************************//
