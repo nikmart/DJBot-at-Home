@@ -30,6 +30,18 @@ function sendMsg() {
     resetMsg();
 }
 
+function sendNote() {
+  // only send the note if it is an ENTER key
+  if (event.keyCode == 13) {
+    // get and send the messge to the remote interface
+    var msg = document.getElementById("note").value;
+    console.log(msg);
+    socket.emit('note', msg); //send the message to ther server
+    addNote(msg);
+    document.getElementById("note").value = ''; //reset note window
+  }
+}
+
 function resetMsg() {
     document.getElementById("message").value = '';
 }
@@ -51,6 +63,17 @@ function addQuestion(msg) {
     para.prepend(btn);
     para.className = "previous-question";
     var element = document.getElementById("questions");
+    element.prepend(para);
+}
+
+function addNote(msg) {
+    // create a new line with the questions at the top of the list
+    var para = document.createElement("p");
+    var node = document.createTextNode(msg);
+    para.appendChild(node);
+
+    para.className = "previous-note";
+    var element = document.getElementById("notes");
     element.prepend(para);
 }
 

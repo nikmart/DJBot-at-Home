@@ -55,7 +55,7 @@ client.on('message', function (topic, message) {
 
   // Say the message using our function that turns Spotify down
   if (topic === 'DJ0-say') {
-    say_message(message.toString())
+    say_message(message.toString());
   }
 
   // Control the spotify volume (without changing the system volume)
