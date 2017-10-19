@@ -102,10 +102,21 @@ function halfSpotify() {
     document.getElementById("spotifyHalf").textContent = "RESTORE";
     restore = true;
   } else {
-    range = document.getElementById("spotifyRange")
-    changeSpotifyVol(spotifyVol.toString());
-    range.value = spotifyVol.toString();
+    range = document.getElementById("spotifyRange");
+    //changeSpotifyVol(spotifyVol.toString());
+    rampVolUp(current_vol);
     document.getElementById("spotifyHalf").textContent = "HALF";
     restore = false;
+  }
+}
+
+function rampVolUp(current_vol) {
+  if (current_vol < spotifyVol) {
+    setTimeout(function(){
+      current_vol++;
+      changeSpotifyVol(current_vol.toString());
+      range.value = current_vol.toString();
+      rampVolUp(current_vol);
+    }, 25);
   }
 }
