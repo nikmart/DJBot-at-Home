@@ -17,7 +17,9 @@ function sendOnEnter() {
 
 function sendMsg() {
     // lower the volume first
-    halfSpotify();
+    if (!restore) {
+      halfSpotify();
+    }
     // get and send the messge to the remote interface
     var msg = document.getElementById("message").value;
     console.log(msg);
@@ -79,12 +81,16 @@ function addNote(msg) {
 
 function replayMsg(msg) {
     console.log(msg);
-    halfSpotify(); //lower the volume first
+    if (!restore) {
+      halfSpotify();
+    } //lower the volume first
     socket.emit('msg', msg); //send the message to ther server
 }
 
 function playMsg(msgID) {
-    halfSpotify(); //lower the volume first
+    if (!restore) {
+      halfSpotify();
+    } //lower the volume first
     var msg = document.getElementById(msgID).innerHTML;
     console.log(msg);
     socket.emit('msg', msg); //send the message to ther server
