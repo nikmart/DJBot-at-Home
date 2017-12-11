@@ -38,7 +38,7 @@ function sendNote() {
     // get and send the messge to the remote interface
     var msg = document.getElementById("note").value;
     console.log(msg);
-    socket.emit('note', msg); //send the message to ther server
+    socket.emit('sys-note', msg); //send the message to ther server
     addNote(msg);
     document.getElementById("note").value = ''; //reset note window
   }
