@@ -99,6 +99,13 @@ io.on('connect', function(socket) {
       client.publish('DJ0-sys-vol', msg);
     });
 
+    // if you get a note, send it to the server
+    socket.on('sys-note', function(msg) {
+      console.log(msg);
+      // send if to the mqtt broker
+      client.publish('DJ0-sys-note', msg);
+    });
+
     // if you get the 'disconnect' message, say the user disconnected
     socket.on('disconnect', function() {
         console.log('user disconnected');

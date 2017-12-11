@@ -41,6 +41,7 @@ client.on('connect', function () {
   client.subscribe('DJ0-say'); // messages from the wizard interface to speak out
   client.subscribe('DJ0-vol'); // control Spotify volume independent of system
   client.subscribe('DJ0-sys-vol'); // control system volume
+  client.subscribe('DJ0-sys-note'); // wizard notes
   console.log("Waiting for messages...");
 
   // messages for testing
