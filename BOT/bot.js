@@ -1,3 +1,14 @@
+/**
+ * @Author: Nik Martelaro <nikmart>
+ * @Date:   2017-12-11T18:40:02-05:00
+ * @Email:  nmartelaro@gmail.com
+ * @Filename: bot.js
+ * @Last modified by:   nikmart
+ * @Last modified time: 2018-02-11T20:55:00-05:00
+ */
+
+
+
 /*
 bot.js - DJ Bot bot code
 
@@ -33,6 +44,9 @@ var volume = require('osx-volume-controls')
 
 //timesatamping
 require('log-timestamp');
+
+// song tracking
+var lastSong;
 //****************************************************************************//
 
 //********************** MQTT MESSAGES WITH ACTIONS **************************//
@@ -69,6 +83,7 @@ client.on('message', function (topic, message) {
     volume.set(parseInt(message.toString()));
   }
 
+
   //client.end();
 });
 //****************************************************************************//
@@ -76,25 +91,24 @@ client.on('message', function (topic, message) {
 // FUNCTIONS //
 function say_message(msg) {
   say.speak(msg);
-  // Turn the volume down, say something, then turn it back up to the original
-  // volume. The functions are stacked since they are based on callbacks and
-  // usualy run asynchronously
-  // spotify.getState(function(err, state) {
-  //   level = state.volume;
-  //   console.log(level);
-  //   // Lower the Spotify volume by 50%
-  //   spotify.setVolume(level/2, function() {
-  //     // Say the message
-  //     say.speak(msg, 'Samantha', 1.0, (err) => {
-  //       if (err) {
-  //         return console.error(err);
-  //       }
-  //       // Set the volume back to the original level
-  //       spotify.setVolume(level);
-  //     });
-  //   });
-  // });
 }
+
+// Get the song info and update the song tracker lastSong
+function getSong() {
+  spotify.getTrack(function(err, track){
+    if (track.id != lastSong) {
+      console.log(track);
+      lastSong = track.id;
+    }
+  });
+}
+
+// Check for a new song every 5
+setInterval(getSong, 1000);
+
+
+
+
 
 // TESTS
 //say_message("Hello, my name is D J bot! Let's listen to some music!")
