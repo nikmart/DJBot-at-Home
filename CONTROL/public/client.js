@@ -1,3 +1,14 @@
+/**
+ * @Author: Nik Martelaro <nikmart>
+ * @Date:   2017-12-11T18:40:02-05:00
+ * @Email:  nmartelaro@gmail.com
+ * @Filename: client.js
+ * @Last modified by:   nikmart
+ * @Last modified time: 2018-02-13T15:06:52-05:00
+ */
+
+
+
 // JavaScript Document
 var socket = io();
 var spotifyVol = "100";
@@ -36,6 +47,7 @@ function sendNote() {
   // only send the note if it is an ENTER key
   if (event.keyCode == 13) {
     // get and send the messge to the remote interface
+    if(event.preventDefault) event.preventDefault();
     var msg = document.getElementById("note").value;
     console.log(msg);
     socket.emit('sys-note', msg); //send the message to ther server

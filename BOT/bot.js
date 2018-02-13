@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: bot.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-11T20:55:00-05:00
+ * @Last modified time: 2018-02-13T15:12:07-05:00
  */
 
 
@@ -105,10 +105,6 @@ function getSong() {
 
 // Check for a new song every 5
 setInterval(getSong, 1000);
-
-
-
-
 
 // TESTS
 //say_message("Hello, my name is D J bot! Let's listen to some music!")
