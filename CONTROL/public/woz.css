@@ -1,3 +1,14 @@
+/**
+ * @Author: Nik Martelaro <nikmart>
+ * @Date:   2017-12-11T18:40:02-05:00
+ * @Email:  nmartelaro@gmail.com
+ * @Filename: woz.css
+ * @Last modified by:   nikmart
+ * @Last modified time: 2018-02-13T13:17:48-05:00
+ */
+
+
+
 html, body {
             height: 100%;
             margin: 0;
@@ -21,13 +32,13 @@ div {
     /*/*border: 1px solid red;*/*/
 }
 .left-container {
-    flex: 0 1 50%;
+    flex: 0 1 40%;
     min-height: 100%;
     max-width: 50%;
     /*border: 1px solid red;*/
 }
 .right-container {
-    flex: 0 1 30%;
+    flex: 0 1 40%;
     display: flex;
     height: 100%;
     max-width: 50%;
