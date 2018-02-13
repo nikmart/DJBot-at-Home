@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: woz.css
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-13T13:17:48-05:00
+ * @Last modified time: 2018-02-13T14:42:44-05:00
  */
 
 
@@ -32,7 +32,7 @@ div {
     /*/*border: 1px solid red;*/*/
 }
 .left-container {
-    flex: 0 1 40%;
+    flex: 0 1 35%;
     min-height: 100%;
     max-width: 50%;
     /*border: 1px solid red;*/
@@ -47,7 +47,7 @@ div {
     /*border: 1px solid red;*/
 }
 .note-container{
-  flex: 0 1 20%;
+  flex: 0 1 25%;
   display: flex;
   height: 100%;
   max-width: 50%;
