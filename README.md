@@ -17,7 +17,8 @@ The BOT directory contains the souce code for the in-context DJ Bot. The Bot use
 1. Clone this repo using git
 2. Navigate to `BOT` directory using your Terminal
 3. Run `npm install`
-4. Run `forever start bot.js -l out.log -e err.log`
+4. Run `npm install forever -g` to install forever.js
+5. Run `forever start bot.js -l out.log -e err.log`
 
 
 ### CONTROL
@@ -37,4 +38,5 @@ The CONTROL directory contains the source code for running the DJ Bot control pa
 1. Clone this repo using git
 2. Navigate to `CONTROL` directory using your Terminal
 3. Run `npm install`
-4. Run `forever start control.js -l out.log -e err.log`
+4. Run `npm install forever -g` to install forever.js
+5. Run `forever start control.js -l out.log -e err.log`
