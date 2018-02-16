@@ -11,6 +11,13 @@ The BOT directory contains the souce code for the in-context DJ Bot. The Bot use
 4. Spotify Desktop
 5. Speakers
 6. Webcam with microphone
+7. [forever.js](https://github.com/foreverjs/forever) (a system to keep node apps running in the background)
+
+#### Instructions
+1. Clone this repo using git
+2. Navigate to `BOT` directory using your Terminal
+3. Run `npm install`
+4. Run `forever start bot.js -l out.log -e err.log`
 
 
 ### CONTROL
@@ -23,6 +30,11 @@ The CONTROL directory contains the source code for running the DJ Bot control pa
 #### Requirements
 1. NodeJS and NPM
 2. An open network port that can be used for serving the web application.
+3. [forever.js](https://github.com/foreverjs/forever) (a system to keep node apps running in the background)
+4. A known MQTT broker
 
-
-
+#### Instructions
+1. Clone this repo using git
+2. Navigate to `CONTROL` directory using your Terminal
+3. Run `npm install`
+4. Run `forever start control.js -l out.log -e err.log`
