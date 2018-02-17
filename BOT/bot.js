@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: bot.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-13T15:12:07-05:00
+ * @Last modified time: 2018-02-16T19:32:54-05:00
  */
 
 
@@ -59,7 +59,7 @@ client.on('connect', function () {
   console.log("Waiting for messages...");
 
   // messages for testing
-  client.publish('DJ0-say', 'Hello, my name is DJ bot!');
+  //client.publish('DJ0-say', 'Hello, my name is DJ bot!');
 });
 
 // Print out the messages and say messages that are topic: "say"
@@ -90,7 +90,16 @@ client.on('message', function (topic, message) {
 
 // FUNCTIONS //
 function say_message(msg) {
-  say.speak(msg);
+  //say.speak(msg);
+  // Fire a callback once the text has completed being spoken
+  say.speak(msg, null, null, (err) => {
+    if (err) {
+      return console.error(err)
+    }
+
+    console.log('Text has been spoken.')
+    client.publish('DJ0-status', 'text-spoken')
+  });
 }
 
 // Get the song info and update the song tracker lastSong

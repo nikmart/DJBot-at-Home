@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-13T15:06:52-05:00
+ * @Last modified time: 2018-02-16T19:53:48-05:00
  */
 
 
@@ -164,3 +164,16 @@ function rampVolUp(current_vol) {
     }, 25);
   }
 }
+
+// read the data from the message that the server sent and change the
+// background of the webpage based on the data in the message
+socket.on('server-msg', function(msg) {
+    console.log('msg:', msg);
+    switch(msg) {
+        case 'rampup':
+            current_vol = parseInt(document.getElementById("spotify-vol").textContent);
+            rampVolUp(current_vol);
+            restore = false;
+            break;
+    }
+});

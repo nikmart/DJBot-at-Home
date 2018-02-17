@@ -1,3 +1,14 @@
+/**
+ * @Author: Nik Martelaro <nikmart>
+ * @Date:   2017-12-11T18:40:02-05:00
+ * @Email:  nmartelaro@gmail.com
+ * @Filename: control.js
+ * @Last modified by:   nikmart
+ * @Last modified time: 2018-02-16T19:46:29-05:00
+ */
+
+
+
 /*
 control.js - CONTOL INTERFACE
 
@@ -50,8 +61,9 @@ server.listen(serverPort, function() {
 client.on('connect', function () {
   //Subscribe to topics
   client.subscribe('say');
+  client.subscribe('DJ0-status');
   console.log("Waiting for messages...");
-  client.publish('DJ0-say', 'Hello, I am a need finding machine');
+  //client.publish('DJ0-say', 'Hello, I am a need finding machine');
 });
 
 // process the MQTT messages
@@ -65,6 +77,11 @@ client.on('message', function (topic, message) {
     // pass the data along to the client
     console.log(topic, message.toString());
     io.emit('server-msg', message.toString());
+  }
+
+  if (topic === 'DJ0-status') {
+    console.log(topic, message.toString());
+    io.emit('server-msg', 'rampup')
   }
   //client.end();
 });
