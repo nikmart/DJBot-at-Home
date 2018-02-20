@@ -41,7 +41,7 @@
       <br>
 
       <div class="message-input">
-        <label for="message" >Message: </label>
+        <label for="message">Message: </label>
         <input type="text" id="message" name="message" onKeyDown="sendOnEnter()">
       </div>
 
@@ -51,7 +51,19 @@
     </div>
 
     <div class="right-container">
-      <h4>Script</h4>
+      <div class="queue-message-input">
+        <label for="queue_message">Queue message: </label>
+        <input type="text" id="queue_message" name="queue_message" onKeyDown="queueOnEnter()">
+      </div>
+
+      <div class="script-container">
+        <div class="previous-messages" id="queued_questions">
+        </div>
+      </div>
+
+      <div class="script-container">
+        <h4>Script</h4>
+      </div>
 
       <!-- Proactive -->
       <div class="script-container">
@@ -89,8 +101,8 @@
       </div>
 
       <div class="script-container">
-        <button onClick="playMsg('q5')" class="play">&#9658;</button>
-        <p id="q5">OK.</p>
+        <button onClick="playMsg('q27')" class="play">&#9658;</button>
+        <p id="q27">OK.</p>
       </div>
 
       <div class="script-container">

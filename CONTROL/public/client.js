@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-16T19:53:48-05:00
+ * @Last modified time: 2018-02-20T11:00:13-05:00
  */
 
 
@@ -13,6 +13,7 @@
 var socket = io();
 var spotifyVol = "100";
 var restore = false;
+var queueCount = 0;
 
 // send out sound message over socket
 function play(id) {
@@ -23,6 +24,13 @@ function sendOnEnter() {
     // send on enter key
     if (event.keyCode == 13) {
         sendMsg();
+    }
+}
+
+function queueOnEnter() {
+    // send on enter key
+    if (event.keyCode == 13) {
+        queueMsg();
     }
 }
 
@@ -43,6 +51,19 @@ function sendMsg() {
     resetMsg();
 }
 
+function queueMsg() {
+    // get and send the messge to the remote interface
+    var msg = document.getElementById("queue_message").value;
+    console.log(msg);
+    //socket.emit('msg', msg); //send the message to ther server
+
+    // add the question to the list
+    queueQuestion(msg);
+
+    // reset the message window
+    resetQueue();
+}
+
 function sendNote() {
   // only send the note if it is an ENTER key
   if (event.keyCode == 13) {
@@ -60,6 +81,10 @@ function resetMsg() {
     document.getElementById("message").value = '';
 }
 
+function resetQueue() {
+    document.getElementById("queue_message").value = '';
+}
+
 function addQuestion(msg) {
     // create a new line with the questions at the top of the list
     var para = document.createElement("p");
@@ -70,13 +95,38 @@ function addQuestion(msg) {
     btn.className = "play";
     var btnReplay = document.createTextNode("\u25B6"); // Create a text node
     btn.onclick = function() {
-        replayMsg(msg)
+        replayMsg(msg);
     };
     btn.appendChild(btnReplay);
 
     para.prepend(btn);
     para.className = "previous-question";
     var element = document.getElementById("questions");
+    element.prepend(para);
+}
+
+function queueQuestion(msg) {
+    // create a new line with the questions at the top of the list
+    var para = document.createElement("p");
+    var node = document.createTextNode(msg);
+    para.appendChild(node);
+    para.id = "queue" + queueCount;
+    msgID = para.id;
+    queueCount++;
+
+    var btn = document.createElement("BUTTON");
+    btn.className = "play";
+    var btnReplay = document.createTextNode("\u25B6"); // Create a text node
+    btn.onclick = function() {
+      replayMsg(msg);
+      addQuestion(msg);
+      clearQuestion(this.parentNode.id); //[https://stackoverflow.com/questions/27842138/get-id-of-parent-element-on-click]
+    };
+    btn.appendChild(btnReplay);
+
+    para.prepend(btn);
+    para.className = "previous-question";
+    var element = document.getElementById("queued_questions");
     element.prepend(para);
 }
 
@@ -100,12 +150,22 @@ function replayMsg(msg) {
 }
 
 function playMsg(msgID) {
+    //lower the volume first
     if (!restore) {
       halfSpotify();
-    } //lower the volume first
+    }
     var msg = document.getElementById(msgID).innerHTML;
     console.log(msg);
     socket.emit('msg', msg); //send the message to ther server
+    addQuestion(msg);
+}
+
+//Clear a message from the queue
+//[https://www.w3schools.com/js/js_htmldom_nodes.asp]
+function clearQuestion(msgID) {
+  var parent = document.getElementById('queued_questions');
+  var queue_message = document.getElementById(msgID);
+  parent.removeChild(queue_message);
 }
 
 function readEnglish() {
