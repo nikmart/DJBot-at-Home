@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: bot.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-16T19:32:54-05:00
+ * @Last modified time: 2018-02-19T23:25:46-05:00
  */
 
 
@@ -105,15 +105,19 @@ function say_message(msg) {
 // Get the song info and update the song tracker lastSong
 function getSong() {
   spotify.getTrack(function(err, track){
-    if (track.id != lastSong) {
+    // Check that the tack exists and isnt the last track [1]
+    if ((typeof track !== 'undefined') && (track.id != lastSong)) {
       console.log(track);
       lastSong = track.id;
     }
   });
 }
 
-// Check for a new song every 5
+// Check for a new song
 setInterval(getSong, 1000);
 
 // TESTS
 //say_message("Hello, my name is D J bot! Let's listen to some music!")
+
+// REFERENCES
+// [1] https://stackoverflow.com/questions/13335873/how-can-i-check-whether-a-variable-is-defined-in-node-js
