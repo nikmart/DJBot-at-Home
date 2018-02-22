@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-20T11:00:13-05:00
+ * @Last modified time: 2018-02-21T19:11:25-05:00
  */
 
 
@@ -14,6 +14,7 @@ var socket = io();
 var spotifyVol = "100";
 var restore = false;
 var queueCount = 0;
+var track;
 
 // send out sound message over socket
 function play(id) {
@@ -236,4 +237,15 @@ socket.on('server-msg', function(msg) {
             restore = false;
             break;
     }
+});
+
+//get the song info and update the song display
+socket.on('song-msg', function(msg) {
+    console.log('msg:', msg);
+    track = JSON.parse(msg);
+    document.getElementById("song").textContent = track.name +
+                                                  ', ' +
+                                                  track.artist +
+                                                  ', ' +
+                                                  track.album;
 });

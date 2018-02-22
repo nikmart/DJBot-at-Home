@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: control.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-16T19:46:29-05:00
+ * @Last modified time: 2018-02-21T18:59:21-05:00
  */
 
 
@@ -62,6 +62,7 @@ client.on('connect', function () {
   //Subscribe to topics
   client.subscribe('say');
   client.subscribe('DJ0-status');
+  client.subscribe('DJ0-song');
   console.log("Waiting for messages...");
   //client.publish('DJ0-say', 'Hello, I am a need finding machine');
 });
@@ -82,6 +83,10 @@ client.on('message', function (topic, message) {
   if (topic === 'DJ0-status') {
     console.log(topic, message.toString());
     io.emit('server-msg', 'rampup')
+  }
+
+  if (topic === 'DJ0-song') {
+    io.emit('song-msg', message.toString())
   }
   //client.end();
 });

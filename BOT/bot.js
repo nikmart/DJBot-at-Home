@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: bot.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-19T23:25:46-05:00
+ * @Last modified time: 2018-02-21T19:10:41-05:00
  */
 
 
@@ -96,7 +96,6 @@ function say_message(msg) {
     if (err) {
       return console.error(err)
     }
-
     console.log('Text has been spoken.')
     client.publish('DJ0-status', 'text-spoken')
   });
@@ -107,8 +106,10 @@ function getSong() {
   spotify.getTrack(function(err, track){
     // Check that the tack exists and isnt the last track [1]
     if ((typeof track !== 'undefined') && (track.id != lastSong)) {
-      console.log(track);
+      console.log(JSON.stringify(track));
       lastSong = track.id;
+      // send the song data to the control interface
+      client.publish('DJ0-song', JSON.stringify(track));
     }
   });
 }

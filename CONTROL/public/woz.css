@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: woz.css
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-20T11:15:52-05:00
+ * @Last modified time: 2018-02-21T19:06:10-05:00
  */
 
 
@@ -226,6 +226,10 @@ button:hover {
 
 .message-input {
   margin-bottom: 10px;
+}
+
+.song-info {
+  margin-left: 5px;
 }
 
 .queue-message-input {
