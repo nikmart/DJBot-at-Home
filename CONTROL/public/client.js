@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-21T19:26:37-05:00
+ * @Last modified time: 2018-02-21T19:49:39-05:00
  */
 
 
@@ -56,7 +56,6 @@ function sendMsg() {
 function queueMsg() {
     // get and send the messge to the remote interface
     var msg = document.getElementById("queue_message").value;
-    msg = parseSong(msg); //check for any song keywords
     console.log(msg);
     //socket.emit('msg', msg); //send the message to ther server
 
@@ -121,6 +120,7 @@ function queueQuestion(msg) {
     btn.className = "play";
     var btnReplay = document.createTextNode("\u25B6"); // Create a text node
     btn.onclick = function() {
+      msg = parseSong(msg);
       replayMsg(msg);
       addQuestion(msg);
       clearQuestion(this.parentNode.id); //[https://stackoverflow.com/questions/27842138/get-id-of-parent-element-on-click]
