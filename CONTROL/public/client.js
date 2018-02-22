@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-21T19:11:25-05:00
+ * @Last modified time: 2018-02-21T19:26:37-05:00
  */
 
 
@@ -42,6 +42,7 @@ function sendMsg() {
     }
     // get and send the messge to the remote interface
     var msg = document.getElementById("message").value;
+    msg = parseSong(msg); //check for any song keywords
     console.log(msg);
     socket.emit('msg', msg); //send the message to ther server
 
@@ -55,6 +56,7 @@ function sendMsg() {
 function queueMsg() {
     // get and send the messge to the remote interface
     var msg = document.getElementById("queue_message").value;
+    msg = parseSong(msg); //check for any song keywords
     console.log(msg);
     //socket.emit('msg', msg); //send the message to ther server
 
@@ -224,6 +226,25 @@ function rampVolUp(current_vol) {
       rampVolUp(current_vol);
     }, 25);
   }
+}
+
+function parseSong(message) {
+  parsedMessage = message;
+  //check for song info keywords $artist, $track, $song, $album
+  parsedMessage = parsedMessage.replace('$artist', track.artist);
+  parsedMessage = parsedMessage.replace('$band', track.artist);
+  parsedMessage = parsedMessage.replace('$track', track.name);
+  parsedMessage = parsedMessage.replace('$song', track.name);
+  parsedMessage = parsedMessage.replace('$album', track.album);
+
+  parsedMessage = parsedMessage.replace('#artist', track.artist);
+  parsedMessage = parsedMessage.replace('#band', track.artist);
+  parsedMessage = parsedMessage.replace('#track', track.name);
+  parsedMessage = parsedMessage.replace('#song', track.name);
+  parsedMessage = parsedMessage.replace('#album', track.album);
+
+  console.log(parsedMessage);
+  return parsedMessage;
 }
 
 // read the data from the message that the server sent and change the

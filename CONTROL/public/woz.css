@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: woz.css
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-21T19:06:10-05:00
+ * @Last modified time: 2018-02-21T19:34:16-05:00
  */
 
 
@@ -258,6 +258,13 @@ h1, h2, h3, h4, h5 {
   font-family: sans-serif;
   margin-top: 5px;
   margin-bottom: 7px;
+}
+
+#keywords {
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: small;
+  color: grey;
 }
 
 
