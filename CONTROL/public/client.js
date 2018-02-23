@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T15:09:49-05:00
+ * @Last modified time: 2018-02-23T15:16:39-05:00
  */
 
 
@@ -302,7 +302,7 @@ socket.on('server-note', function(msg){
   //only print notes from other wizards
   //https://stackoverflow.com/questions/6614424/check-if-text-is-in-a-string
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
-  if (msg.indexOf(wizardName) == -1) {
+  if (msg.indexOf(wizardName + ':') == -1) {
     addNote(msg);
   }
 })
