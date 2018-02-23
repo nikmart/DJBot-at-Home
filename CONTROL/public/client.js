@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T11:37:43-05:00
+ * @Last modified time: 2018-02-23T11:59:13-05:00
  */
 
 
@@ -17,6 +17,7 @@ var queueCount = 0;
 var track;
 var botStatus = '';
 var heartbeatTimer;
+var wizardName = '';
 
 // send out sound message over socket
 function play(id) {
@@ -35,6 +36,10 @@ function queueOnEnter() {
     if (event.keyCode == 13) {
         queueMsg();
     }
+}
+
+function setName() {
+  wizardName = document.getElementById('name').value;
 }
 
 function sendMsg() {
@@ -74,9 +79,9 @@ function sendNote() {
     // get and send the messge to the remote interface
     if(event.preventDefault) event.preventDefault();
     var msg = document.getElementById("note").value;
-    console.log(msg);
-    socket.emit('sys-note', msg); //send the message to ther server
-    addNote(msg);
+    console.log(wizardName + ': ' + msg);
+    socket.emit('sys-note', wizardName + ': ' + msg); //send the message to ther server
+    addNote(wizardName + ': ' + msg);
     document.getElementById("note").value = ''; //reset note window
   }
 }

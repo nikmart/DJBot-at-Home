@@ -237,7 +237,9 @@
     <div class="note-container">
 
       <div>
-        <h5>Notes: (press enter to send note)</h5>
+        <h5>Notes</h5>
+        <label for="name">Wizard name: </label>
+        <input type="text" id="name" name="name" onKeyDown="setName()">
         <textarea rows="2" cols="50" id="note" name="note" onKeyDown="sendNote()"></textarea>
       </div>
 
