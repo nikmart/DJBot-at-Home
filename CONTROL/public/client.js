@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-21T19:49:39-05:00
+ * @Last modified time: 2018-02-23T11:37:43-05:00
  */
 
 
@@ -15,6 +15,8 @@ var spotifyVol = "100";
 var restore = false;
 var queueCount = 0;
 var track;
+var botStatus = '';
+var heartbeatTimer;
 
 // send out sound message over socket
 function play(id) {
@@ -257,6 +259,21 @@ socket.on('server-msg', function(msg) {
             rampVolUp(current_vol);
             restore = false;
             break;
+        // heartbeat message
+        case 'alive':
+          clearTimeout(heartbeatTimer);
+          if (botStatus != 'alive') {
+            document.getElementById("namestatus").textContent = "DJ Bot 0 - Connected";
+            document.getElementById("namestatus").style.color = '#1DB954';
+            botStatus = 'alive';
+          }
+          heartbeatTimer = setTimeout(function(){
+            botStatus = '';
+            console.log("reset heartbeat");
+            document.getElementById("namestatus").textContent = "DJ Bot 0 - Offline";
+            document.getElementById("namestatus").style.color = "red";
+          }, 7000);
+          break;
     }
 });
 

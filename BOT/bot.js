@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: bot.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-21T19:10:41-05:00
+ * @Last modified time: 2018-02-23T11:33:45-05:00
  */
 
 
@@ -59,7 +59,7 @@ client.on('connect', function () {
   console.log("Waiting for messages...");
 
   // messages for testing
-  //client.publish('DJ0-say', 'Hello, my name is DJ bot!');
+  client.publish('DJ0-heartbeat', 'alive');
 });
 
 // Print out the messages and say messages that are topic: "say"
@@ -114,8 +114,16 @@ function getSong() {
   });
 }
 
+// Create a heartbeat
+function heartbeat() {
+  client.publish('DJ0-heartbeat', 'alive');
+}
+
 // Check for a new song
 setInterval(getSong, 1000);
+
+// Send a heartbeat to show that the bot is disconnected
+setInterval(heartbeat, 5000);
 
 // TESTS
 //say_message("Hello, my name is D J bot! Let's listen to some music!")
