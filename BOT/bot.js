@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: bot.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T11:33:45-05:00
+ * @Last modified time: 2018-02-23T14:48:40-05:00
  */
 
 
@@ -56,10 +56,12 @@ client.on('connect', function () {
   client.subscribe('DJ0-vol'); // control Spotify volume independent of system
   client.subscribe('DJ0-sys-vol'); // control system volume
   client.subscribe('DJ0-sys-note'); // wizard notes
+  client.subscribe('DJ0-control-msg'); //genreal message from controller
   console.log("Waiting for messages...");
 
   // messages for testing
   client.publish('DJ0-heartbeat', 'alive');
+  getSong();
 });
 
 // Print out the messages and say messages that are topic: "say"
@@ -81,6 +83,18 @@ client.on('message', function (topic, message) {
   // Control the system volume (changes the music and the voice)
   if (topic === 'DJ0-sys-vol') {
     volume.set(parseInt(message.toString()));
+  }
+
+  // Get the song the first time that a user connects
+  if (topic === 'DJ0-control-msg') {
+    switch (message.toString()) {
+      case 'getSong':
+        spotify.getTrack(function(err, track){
+          // send the song data to the control interface
+          client.publish('DJ0-song', JSON.stringify(track));
+        });
+        break;
+    }
   }
 
 

@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T14:09:44-05:00
+ * @Last modified time: 2018-02-23T15:09:49-05:00
  */
 
 
@@ -39,7 +39,11 @@ function queueOnEnter() {
 }
 
 function setName() {
-  wizardName = document.getElementById('name').value;
+  if (event.keyCode == 13) {
+    wizardName = document.getElementById('name').value;
+    document.getElementById('name').readOnly = true;
+    document.getElementById('name').style.border = "none";
+  }
 }
 
 function sendMsg() {
@@ -227,7 +231,7 @@ function halfSpotify() {
 function rampVolUp(current_vol) {
   if (current_vol < spotifyVol) {
     setTimeout(function(){
-      current_vol++;
+      current_vol+=5;
       changeSpotifyVol(current_vol.toString());
       range.value = current_vol.toString();
       rampVolUp(current_vol);
@@ -297,6 +301,7 @@ socket.on('song-msg', function(msg) {
 socket.on('server-note', function(msg){
   //only print notes from other wizards
   //https://stackoverflow.com/questions/6614424/check-if-text-is-in-a-string
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
   if (msg.indexOf(wizardName) == -1) {
     addNote(msg);
   }

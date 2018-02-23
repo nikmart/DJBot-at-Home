@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: control.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T14:02:48-05:00
+ * @Last modified time: 2018-02-23T14:42:55-05:00
  */
 
 
@@ -109,6 +109,7 @@ client.on('message', function (topic, message) {
 // interface.
 io.on('connect', function(socket) {
     console.log('a user connected');
+    client.publish('DJ0-control-msg', 'getSong');
 
     // if you get a message to send, send to the MQTT broker
     socket.on('msg', function(msg) {
