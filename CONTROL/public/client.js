@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: client.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T11:59:13-05:00
+ * @Last modified time: 2018-02-23T14:09:44-05:00
  */
 
 
@@ -292,3 +292,12 @@ socket.on('song-msg', function(msg) {
                                                   ', ' +
                                                   track.album;
 });
+
+//get notes from other wizards
+socket.on('server-note', function(msg){
+  //only print notes from other wizards
+  //https://stackoverflow.com/questions/6614424/check-if-text-is-in-a-string
+  if (msg.indexOf(wizardName) == -1) {
+    addNote(msg);
+  }
+})

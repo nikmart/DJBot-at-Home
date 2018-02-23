@@ -237,9 +237,11 @@
     <div class="note-container">
 
       <div>
-        <h5>Notes</h5>
-        <label for="name">Wizard name: </label>
-        <input type="text" id="name" name="name" onKeyDown="setName()">
+        <div class="name-input">
+          <label for="name">Wizard name: </label>
+          <input type="text" id="name" name="name" onKeyDown="setName()">
+        </div>
+        <h4>Notes</h4>
         <textarea rows="2" cols="50" id="note" name="note" onKeyDown="sendNote()"></textarea>
       </div>
 

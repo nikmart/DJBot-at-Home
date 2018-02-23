@@ -4,7 +4,7 @@
  * @Email:  nmartelaro@gmail.com
  * @Filename: control.js
  * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T09:55:06-05:00
+ * @Last modified time: 2018-02-23T14:02:48-05:00
  */
 
 
@@ -64,6 +64,7 @@ client.on('connect', function () {
   client.subscribe('DJ0-status');
   client.subscribe('DJ0-song');
   client.subscribe('DJ0-heartbeat');
+  client.subscribe('DJ0-sys-note');
   console.log("Waiting for messages...");
   //client.publish('DJ0-say', 'Hello, I am a need finding machine');
 });
@@ -92,6 +93,10 @@ client.on('message', function (topic, message) {
 
   if (topic === 'DJ0-heartbeat') {
     io.emit('server-msg', message.toString())
+  }
+
+  if (topic === 'DJ0-sys-note') {
+    io.emit('server-note', message.toString())
   }
   //client.end();
 });
