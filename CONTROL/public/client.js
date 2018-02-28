@@ -235,7 +235,7 @@ function rampVolUp(current_vol) {
       changeSpotifyVol(current_vol.toString());
       range.value = current_vol.toString();
       rampVolUp(current_vol);
-    }, 25);
+    }, 100);
   }
 }
 
