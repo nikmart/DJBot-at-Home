@@ -1,24 +1,13 @@
-/**
- * @Author: Nik Martelaro <nikmart>
- * @Date:   2017-12-11T18:40:02-05:00
- * @Email:  nmartelaro@gmail.com
- * @Filename: bot.js
- * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T14:48:40-05:00
- */
-
-
-
 /*
 bot.js - DJ Bot bot code
 
-Author: Niklas Martelaro (nmartelaro@gmail.com)
+Author: Nikolas Martelaro (nmartelaro@gmail.com)
 
 Purpose: This is the server for the in-home DJ Bot. It accepts messages from the
 control interface for the bot to speak. It also controls the volume of the
 system.
 
-The server subscribes to MQTT messages from the control interfcae and publishes
+The server subscribes to MQTT messages from the control interface and publishes
 MQTT messages that will the control interface will listen to.
 
 Usage: node bot.js
@@ -29,10 +18,15 @@ Notes: You will need to specify what MQTT server you would like to use.
 //****************************** SETUP ***************************************//
 // MQTT Setup
 var mqtt   = require('mqtt');
-var client = mqtt.connect('mqtt://hri.stanford.edu',
-                           {port: 8134,
-                            protocolId: 'MQIsdp',
-                            protocolVersion: 3 });
+require('dotenv').config()
+
+var client = mqtt.connect(process.env.MQTT_HOST, {
+  port: process.env.MQTT_PORT,
+  protocolId: "MQIsdp",
+  protocolVersion: 3,
+  username: process.env.MQTT_USER,
+  password: process.env.MQTT_PASS
+});
 // Text to speech setup
 var say = require('say');
 

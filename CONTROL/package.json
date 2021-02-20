@@ -23,9 +23,10 @@
   },
   "homepage": "https://github.com/nikmart/DJBot-at-Home#readme",
   "dependencies": {
-    "express": "^4.16.2",
-    "log-timestamp": "^0.1.2",
-    "mqtt": "^2.13.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "log-timestamp": "^0.3.0",
+    "mqtt": "^4.2.6",
     "socketio": "^1.0.0"
   }
 }

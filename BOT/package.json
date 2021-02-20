@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nikmart/DJBot-at-Home#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "log-timestamp": "^0.1.2",
     "mqtt": "^2.13.0",
     "osx-volume-controls": "^1.0.1",

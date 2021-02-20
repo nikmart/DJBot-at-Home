@@ -1,14 +1,3 @@
-/**
- * @Author: Nik Martelaro <nikmart>
- * @Date:   2017-12-11T18:40:02-05:00
- * @Email:  nmartelaro@gmail.com
- * @Filename: client.js
- * @Last modified by:   nikmart
- * @Last modified time: 2018-02-23T15:16:39-05:00
- */
-
-
-
 // JavaScript Document
 var socket = io();
 var spotifyVol = "100";
@@ -51,7 +40,7 @@ function sendMsg() {
     if (!restore) {
       halfSpotify();
     }
-    // get and send the messge to the remote interface
+    // get and send the message to the remote interface
     var msg = document.getElementById("message").value;
     msg = parseSong(msg); //check for any song keywords
     console.log(msg);
@@ -65,7 +54,7 @@ function sendMsg() {
 }
 
 function queueMsg() {
-    // get and send the messge to the remote interface
+    // get and send the message to the remote interface
     var msg = document.getElementById("queue_message").value;
     console.log(msg);
     //socket.emit('msg', msg); //send the message to ther server
