@@ -8,6 +8,7 @@ var botStatus = '';
 var heartbeatTimer;
 var wizardName = '';
 
+
 // send out sound message over socket
 function play(id) {
     socket.emit('play', id);
@@ -40,18 +41,27 @@ function sendMsg() {
     if (!restore) {
       halfSpotify();
     }
-    // get and send the message to the remote interface
-    var msg = document.getElementById("message").value;
-    msg = parseSong(msg); //check for any song keywords
-    console.log(msg);
-    socket.emit('msg', msg); //send the message to ther server
-
-    // add the question to the list
-    addQuestion(msg);
-
-    // reset the message window
-    resetMsg();
+    setTimeout(delayedMsg, 1000); 
 }
+
+
+function delayedMsg(){
+  // get and send the message to the remote interface
+  var msg = document.getElementById("message").value;
+  msg = parseSong(msg); //check for any song keywords
+  console.log(msg);
+  socket.emit('msg', msg); //send the message to ther server
+
+  // add the question to the list
+  addQuestion(msg);
+
+  // reset the message window
+  resetMsg();
+}
+
+
+
+
 
 function queueMsg() {
     // get and send the message to the remote interface
@@ -204,8 +214,8 @@ function halfSpotify() {
   if (!restore) {
     spotifyVol = current_vol; //update the last volume
     range = document.getElementById("spotifyRange")
-    changeSpotifyVol((current_vol/2).toString());
-    range.value = (current_vol/2).toString();
+    changeSpotifyVol((current_vol/4).toString());
+    range.value = (current_vol/4).toString();
     document.getElementById("spotifyHalf").textContent = "RESTORE";
     restore = true;
   } else {
