@@ -254,7 +254,6 @@ function parseSong(message) {
   parsedMessage = parsedMessage.replace('#track', track.name);
   parsedMessage = parsedMessage.replace('#song', track.name);
   parsedMessage = parsedMessage.replace('#album', track.album);
-  parsedMessage = parsedMessage.replace('#genre', track.genre);
 
   console.log(parsedMessage);
   return parsedMessage;
