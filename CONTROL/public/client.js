@@ -99,6 +99,7 @@ function resetQueue() {
 
 function addQuestion(msg) {
     // create a new line with the questions at the top of the list
+    msg = parseSong(msg);
     var para = document.createElement("p");
     var node = document.createTextNode(msg);
     para.appendChild(node);
@@ -169,6 +170,7 @@ function playMsg(msgID) {
     }
     var msg = document.getElementById(msgID).innerHTML;
     console.log(msg);
+    msg = parseSong(msg);
     socket.emit('msg', msg); //send the message to ther server
     addQuestion(msg);
 }
@@ -252,6 +254,7 @@ function parseSong(message) {
   parsedMessage = parsedMessage.replace('#track', track.name);
   parsedMessage = parsedMessage.replace('#song', track.name);
   parsedMessage = parsedMessage.replace('#album', track.album);
+  parsedMessage = parsedMessage.replace('#genre', track.genre);
 
   console.log(parsedMessage);
   return parsedMessage;
@@ -305,3 +308,18 @@ socket.on('server-note', function(msg){
     addNote(msg);
   }
 })
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
